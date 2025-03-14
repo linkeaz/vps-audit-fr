@@ -1,4 +1,4 @@
-# Script d'Audit de Sécurité VPS (version française)
+# Script d'audit de sécurité pour VPS (version française)
 
 ![Debian](https://img.shields.io/badge/Debian_10+-D70A53?logo=debian&logoColor=white)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu_18+-E95420?logo=ubuntu&logoColor=white)
