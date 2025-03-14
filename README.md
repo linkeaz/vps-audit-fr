@@ -1,167 +1,110 @@
-# VPS Security Audit Script
+# Script d'Audit de Sécurité VPS (version française)
 
-A comprehensive Bash script for auditing the security and performance of your VPS (Virtual Private Server). This tool performs various security checks and provides a detailed report with recommendations for improvements.
+Ceci est une version traduite et adaptée en français du script [vps-audit](https://github.com/vernu/vps-audit), destiné à auditer la sécurité, les performances et surveiller l'infrastructure des serveurs Linux.
+
 
 <!-- add a screenshot of the output here -->
 
 ![Sample Output](./screenshot.png)
-## Features
 
-### Security Checks
+## Fonctionnalités
 
-- SSH Configuration
-  - Root login status
-  - Password authentication
-  - Non-default port usage
-- Firewall Status (UFW)
-- Fail2ban Configuration
-- Failed Login Attempts
-- System Updates Status
-- Running Services Analysis
-- Open Ports Detection
-- Sudo Logging Configuration
-- Password Policy Enforcement
-- SUID Files Detection
+Ce script en bash, léger et sans dépendances, effectue les vérifications suivantes :
 
-### Performance Monitoring
-
-- Disk Space Usage
-- Memory Usage
-- CPU Usage
-- Active Internet Connections
-
-## Requirements
-
-- Ubuntu/Debian-based Linux system
-- Root access or sudo privileges
-- Basic packages (most are pre-installed):
-  - ufw
-  - systemd
-  - netstat
-  - grep
-  - awk
+- **Configuration SSH :**
+  - Statut de connexion root
+  - Authentification par mot de passe
+  - Utilisation de port non standard
+- État du Pare-feu (UFW, firewalld, iptables ou nftables)
+- Configuration de Fail2ban ou CrowdSec
+- Tentatives de connexion échouées
+- Statut des mises à jour du système
+- Analyse des services en cours d'exécution
+- Détection des ports ouverts
+- Vérification de la journalisation des commandes sudo
+- Politique de mot de passe
+- Vérification des fichiers SUID suspects
 
 ## Installation
 
-1. Download the script:
+1. Téléchargez le script :
 
 ```bash
-wget https://raw.githubusercontent.com/vernu/vps-audit/main/vps-audit.sh
-# or
-curl -O https://raw.githubusercontent.com/vernu/vps-audit/main/vps-audit.sh
+wget https://raw.githubusercontent.com/linkeaz/vps-audit-fr/main/vps-audit-fr.sh
+# ou
+curl -O https://raw.githubusercontent.com/linkeaz/vps-audit-fr/main/vps-audit-fr.sh
 ```
 
-2. Make the script executable:
+## Exécution
 
-```bash
-chmod +x vps-audit.sh
-```
+Le script affiche les résultats en temps réel, avec des couleurs pour indiquer l'état :
 
-## Usage
+- 🟢 `[PASS]` – Vérification réussie
+- 🟡 [WARN] - Problèmes potentiels détectés
+- 🔴 [FAIL] - Problèmes critiques détectés
 
-Run the script with sudo privileges:
+Un rapport détaillé nommé `rapport-audit-vps-[HORODATAGE].txt` est également généré, contenant :
 
-```bash
-sudo ./vps-audit.sh
-```
+- Résultats détaillés des tests
+- Recommandations spécifiques pour les tests échoués
+- Statistiques d'utilisation des ressources système
+- Horodatage de l'audit
 
-The script will:
+## Seuils utilisés
 
-1. Perform all security checks
-2. Display results in real-time with color coding:
-   - 🟢 [PASS] - Check passed successfully
-   - 🟡 [WARN] - Potential issues detected
-   - 🔴 [FAIL] - Critical issues found
-3. Generate a detailed report file: `vps-audit-report-[TIMESTAMP].txt`
+### Seuils d'utilisation des ressources
 
-## Output Format
+- **Utilisation des ressources :**
+  - 🟢 PASS : < 50%
+  - 🟡 WARN : 50% à 80%
+  - 🔴 FAIL : >80%
 
-The script provides two types of output:
+- **Services actifs :**
+  - 🟢 Moins de 20
+  - 🟡 Entre 20 et 40
+  - 🔴 Plus de 40
 
-1. Real-time console output with color coding:
+- **Ports ouverts :**
+  - 🟢 Moins de 10
+  - 🟡 Entre 10 et 20
+  - 🔴 Plus de 20
 
-```
-[PASS] SSH Root Login - Root login is properly disabled in SSH configuration
-[WARN] SSH Port - Using default port 22 - consider changing to a non-standard port
-[FAIL] Firewall Status - UFW firewall is not active - your system is exposed
-```
+## Installation des dépendances
 
-2. A detailed report file containing:
-   - All check results
-   - Specific recommendations for failed checks
-   - System resource usage statistics
-   - Timestamp of the audit
+Le script nécessite :
 
-## Thresholds
+- Bash
+- Accès root/sudo
+- Debian/Ubuntu
+- Dépendances courantes (`netstat`, `grep`, `awk`, `curl` ou `wget`)
 
-### Resource Usage Thresholds
+## Maintenance et bonnes pratiques
 
-- PASS: < 50% usage
-- WARN: 50-80% usage
-- FAIL: > 80% usage
-
-### Security Thresholds
-
-- Failed Logins:
-  - PASS: < 10 attempts
-  - WARN: 10-50 attempts
-  - FAIL: > 50 attempts
-- Running Services:
-  - PASS: < 20 services
-  - WARN: 20-40 services
-  - FAIL: > 40 services
-- Open Ports:
-  - PASS: < 10 ports
-  - WARN: 10-20 ports
-  - FAIL: > 20 ports
-
-## Customization
-
-You can modify the thresholds by editing the following variables in the script:
-
-- Resource usage thresholds
-- Failed login attempt thresholds
-- Service count thresholds
-- Open port thresholds
-
-## Best Practices
-
-1. Run the audit regularly (e.g., weekly) to maintain security
-2. Review the generated report thoroughly
-3. Address any FAIL status immediately
-4. Investigate WARN status during maintenance
-5. Keep the script updated with your security policies
+- Maintenez le script à jour par rapport au dépôt original
+- Vérifiez régulièrement les rapports générés
+- Traitez immédiatement les alertes critiques (🔴 FAIL)
+- Inspectez les avertissements (🟡 WARN) lors des maintenances régulières
+- Adaptez le script à vos politiques de sécurité internes
 
 ## Limitations
 
-- Designed for Debian/Ubuntu-based systems
-- Requires root/sudo access
-- Some checks may need customization for specific environments
-- Not a replacement for professional security audit
+- Conçu principalement pour Debian/Ubuntu
+- Nécessite des privilèges root ou sudo
+- Certains tests pourraient nécessiter une adaptation selon votre environnement spécifique
 
-## Contributing
+## Licence et Origine
 
-Feel free to submit issues and enhancement requests!
+Ce dépôt est un fork de [vps-audit](https://github.com/vernu/vps-audit), traduit et adapté en français pour une utilisation simplifiée et une meilleure accessibilité à la communauté francophone.
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Security Notice
-
-While this script helps identify common security issues, it should not be your only security measure. Always:
-
-- Keep your system updated
-- Monitor logs regularly
-- Follow security best practices
-- Consider professional security audits for critical systems
+Respectez la licence originale du projet parent lors de l'utilisation ou de la distribution de ce script.
 
 ## Support
 
-For support, please:
+En cas de problème :
 
-1. Check the existing issues
-2. Create a new issue with detailed information
-3. Provide the output of the script and your system information
+- Consultez les issues existantes
+- Ouvrez une nouvelle issue en précisant votre problème
+- Fournissez la sortie du script et les informations sur votre système
 
-Stay secure! 🔒
+Bonne sécurisation de vos serveurs ! 🚀🔒
+
