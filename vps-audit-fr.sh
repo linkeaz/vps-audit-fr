@@ -29,11 +29,11 @@ print_info() {
 
 # Démarrage de l'audit
 echo -e "${BLUE}${BOLD}Outil d'audit de sécurité VPS${NC}"
-echo -e "${GRAY}https://github.com/vernu/vps-audit${NC}"
+echo -e "${GRAY}https://github.com/linkeaz/vps-audit-fr${NC}"
 echo -e "${GRAY}Début de l'audit à $(date)${NC}\n"
 
 echo "Outil d'audit de sécurité VPS" > "$REPORT_FILE"
-echo "https://github.com/vernu/vps-audit" >> "$REPORT_FILE"
+echo "https://github.com/linkeaz/vps-audit-fr" >> "$REPORT_FILE"
 echo "Début de l'audit à $(date)" >> "$REPORT_FILE"
 echo "================================" >> "$REPORT_FILE"
 
