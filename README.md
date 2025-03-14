@@ -32,21 +32,23 @@ Ce script en bash, léger et sans dépendances, effectue les vérifications suiv
 
 ## Installation
 
-1. Téléchargez le script :
+**1. Téléchargez le script :**
 
 ```bash
 wget https://raw.githubusercontent.com/linkeaz/vps-audit-fr/main/vps-audit-fr.sh
-# ou
+```
+ou
+```bash
 curl -O https://raw.githubusercontent.com/linkeaz/vps-audit-fr/main/vps-audit-fr.sh
 ```
 
-2. Rendez le script exécutable :
+**2. Rendez le script exécutable :**
 
 ```bash
 chmod +x vps-audit-fr.sh
 ```
 
-3. Lancez le script avec les privilèges sudo :
+**3. Lancez le script avec les privilèges sudo :**
 
 ```bash
 sudo ./vps-audit-fr.sh
