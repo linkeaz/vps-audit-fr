@@ -1,5 +1,10 @@
 # Script d'Audit de Sécurité VPS (version française)
 
+![Debian](https://img.shields.io/badge/Debian_10+-D70A53?logo=debian&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu_18+-E95420?logo=ubuntu&logoColor=white)
+![Linux Mint](https://img.shields.io/badge/Linux_Mint_20+-87CF3E?logo=linux-mint&logoColor=white)
+![Raspberry Pi OS](https://img.shields.io/badge/Raspberry_Pi_OS_10+-C51A4A?logo=raspberry-pi&logoColor=white)
+
 Ceci est une version traduite et adaptée en français du script [vps-audit](https://github.com/vernu/vps-audit), destiné à auditer la sécurité, les performances et surveiller l'infrastructure des serveurs Linux.
 
 
