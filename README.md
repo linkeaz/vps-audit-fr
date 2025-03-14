@@ -5,7 +5,7 @@ Ceci est une version traduite et adaptée en français du script [vps-audit](htt
 
 <!-- add a screenshot of the output here -->
 
-![Sample Output](./screenshot.png)
+![Sample Output](./screenshot.webp)
 
 ## Fonctionnalités
 
