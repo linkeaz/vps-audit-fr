@@ -35,6 +35,18 @@ wget https://raw.githubusercontent.com/linkeaz/vps-audit-fr/main/vps-audit-fr.sh
 curl -O https://raw.githubusercontent.com/linkeaz/vps-audit-fr/main/vps-audit-fr.sh
 ```
 
+2. Rendez le script exécutable :
+
+```bash
+chmod +x vps-audit-fr.sh
+```
+
+3. Lancez le script avec les privilèges sudo :
+
+```bash
+sudo ./vps-audit-fr.sh
+```
+
 ## Exécution
 
 Le script affiche les résultats en temps réel, avec des couleurs pour indiquer l'état :
